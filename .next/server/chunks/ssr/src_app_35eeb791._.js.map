@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 17, "column": 0}, "map": {"version":3,"sources":["file:///F:/WebDevSimplified/job-board-ai/src/app/%28job-seeker%29/%40sidebar/ai-search/page.tsx"],"sourcesContent":["export default function AiSearchSidebar() {\r\n  return null\r\n}\r\n"],"names":[],"mappings":";;;AAAe,SAAS;IACtB,OAAO;AACT","debugId":null}}]
+}

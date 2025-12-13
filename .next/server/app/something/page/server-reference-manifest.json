@@ -1,0 +1,49 @@
+{
+  "node": {
+    "c00073e427cae4da9db7280ffaaf41e5ab6b702bfc": {
+      "workers": {
+        "app/something/page": {
+          "moduleId": "[project]/.next-internal/server/app/something/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/something/page": "rsc"
+      }
+    },
+    "c010323ae3ad72decf16f1156d7ad6f5d0835db2db": {
+      "workers": {
+        "app/something/page": {
+          "moduleId": "[project]/.next-internal/server/app/something/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/something/page": "rsc"
+      }
+    },
+    "7fc56a2b87c9475d61c2a91cc13b8d7b1e269e70f2": {
+      "workers": {
+        "app/something/page": {
+          "moduleId": "[project]/.next-internal/server/app/something/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/something/page": "action-browser"
+      }
+    },
+    "7f3e6904262b752c3d7b8852736789c70751bebc81": {
+      "workers": {
+        "app/something/page": {
+          "moduleId": "[project]/.next-internal/server/app/something/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/something/page": "action-browser"
+      }
+    }
+  },
+  "edge": {}
+}

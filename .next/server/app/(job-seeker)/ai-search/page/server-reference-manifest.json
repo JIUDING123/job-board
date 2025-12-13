@@ -1,0 +1,82 @@
+{
+  "node": {
+    "c00073e427cae4da9db7280ffaaf41e5ab6b702bfc": {
+      "workers": {
+        "app/(job-seeker)/ai-search/page": {
+          "moduleId": "[project]/.next-internal/server/app/(job-seeker)/ai-search/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/features/jobListings/actions/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(job-seeker)/ai-search/page": "rsc"
+      }
+    },
+    "c010323ae3ad72decf16f1156d7ad6f5d0835db2db": {
+      "workers": {
+        "app/(job-seeker)/ai-search/page": {
+          "moduleId": "[project]/.next-internal/server/app/(job-seeker)/ai-search/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/features/jobListings/actions/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(job-seeker)/ai-search/page": "rsc"
+      }
+    },
+    "7fc56a2b87c9475d61c2a91cc13b8d7b1e269e70f2": {
+      "workers": {
+        "app/(job-seeker)/ai-search/page": {
+          "moduleId": "[project]/.next-internal/server/app/(job-seeker)/ai-search/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/features/jobListings/actions/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(job-seeker)/ai-search/page": "action-browser"
+      }
+    },
+    "7f3e6904262b752c3d7b8852736789c70751bebc81": {
+      "workers": {
+        "app/(job-seeker)/ai-search/page": {
+          "moduleId": "[project]/.next-internal/server/app/(job-seeker)/ai-search/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/features/jobListings/actions/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(job-seeker)/ai-search/page": "rsc"
+      }
+    },
+    "7f5c071d3b58d443c08e4f89a6d5c1362fb3ebd8c4": {
+      "workers": {
+        "app/(job-seeker)/ai-search/page": {
+          "moduleId": "[project]/.next-internal/server/app/(job-seeker)/ai-search/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/features/jobListings/actions/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(job-seeker)/ai-search/page": "action-browser"
+      }
+    },
+    "7f981cd83a171ac6617bce42457e28213f4a39ae77": {
+      "workers": {
+        "app/(job-seeker)/ai-search/page": {
+          "moduleId": "[project]/.next-internal/server/app/(job-seeker)/ai-search/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/features/jobListings/actions/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(job-seeker)/ai-search/page": "action-browser"
+      }
+    },
+    "40a9bbb3c1d78a72478bee3f8ca554b7728cf30ed5": {
+      "workers": {
+        "app/(job-seeker)/ai-search/page": {
+          "moduleId": "[project]/.next-internal/server/app/(job-seeker)/ai-search/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/services/clerk/lib/getCurrentAuth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/server-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/features/jobListings/actions/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(job-seeker)/ai-search/page": "action-browser"
+      }
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 13, "column": 0}, "map": {"version":3,"sources":["file:///F:/WebDevSimplified/job-board-ai/src/app/%28clerk%29/organizations/select/page.tsx"],"sourcesContent":["import { OrganizationList } from \"@clerk/nextjs\"\r\nimport { Suspense } from \"react\"\r\n\r\ntype Props = {\r\n  searchParams: Promise<{ redirect?: string }>\r\n}\r\n\r\nexport default async function OrganizationSelectPage(props: Props) {\r\n  return (\r\n    <Suspense>\r\n      <SuspendedPage {...props} />\r\n    </Suspense>\r\n  )\r\n}\r\n\r\nasync function SuspendedPage({ searchParams }: Props) {\r\n  const { redirect } = await searchParams\r\n  const redirectUrl = redirect ?? \"/employer\"\r\n\r\n  return (\r\n    <OrganizationList\r\n      hidePersonal\r\n      hideSlug\r\n      skipInvitationScreen\r\n      afterSelectOrganizationUrl={redirectUrl}\r\n      afterCreateOrganizationUrl={redirectUrl}\r\n    />\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;AACA;;;;AAMe,eAAe,uBAAuB,KAAY;IAC/D,qBACE,8OAAC,qMAAA,CAAA,WAAQ;kBACP,cAAA,8OAAC;YAAe,GAAG,KAAK;;;;;;;;;;;AAG9B;AAEA,eAAe,cAAc,EAAE,YAAY,EAAS;IAClD,MAAM,EAAE,QAAQ,EAAE,GAAG,MAAM;IAC3B,MAAM,cAAc,YAAY;IAEhC,qBACE,8OAAC,sLAAA,CAAA,mBAAgB;QACf,YAAY;QACZ,QAAQ;QACR,oBAAoB;QACpB,4BAA4B;QAC5B,4BAA4B;;;;;;AAGlC","debugId":null}}]
+}

@@ -1,0 +1,14 @@
+curl -X POST https://api.anthropic.com/v1/messages \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: 'sk-g4pFWIRTGbIefj9u7bxfL4kI6RRiaK3kwBE9ewmV8gLi8emP'" \
+  -H "anthropic-version: 2023-06-01" \
+  -d '{
+    "model": "claude-sonnet-4-20250514",
+    "max_tokens": 1024,
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello, Claude!"
+      }
+    ]
+  }'
