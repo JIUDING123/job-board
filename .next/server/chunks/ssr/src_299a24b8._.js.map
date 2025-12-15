@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 13, "column": 0}, "map": {"version":3,"sources":["file:///F:/WebDevSimplified/job-board-ai/src/services/clerk/components/PricingTable.tsx"],"sourcesContent":["import { PricingTable as ClerkPricingTable } from \"@clerk/nextjs\"\r\n\r\nexport function PricingTable() {\r\n  return (\r\n    <ClerkPricingTable\r\n      forOrganizations\r\n      newSubscriptionRedirectUrl=\"/employer/pricing\"\r\n    />\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;;;AAEO,SAAS;IACd,qBACE,8OAAC,sLAAA,CAAA,eAAiB;QAChB,gBAAgB;QAChB,4BAA2B;;;;;;AAGjC","debugId":null}},
-    {"offset": {"line": 34, "column": 0}, "map": {"version":3,"sources":["file:///F:/WebDevSimplified/job-board-ai/src/app/employer/pricing/page.tsx"],"sourcesContent":["import { PricingTable } from \"@/services/clerk/components/PricingTable\"\r\n\r\nexport default function PricingPage() {\r\n  return (\r\n    <div className=\"flex items-center justify-center min-h-full p-4\">\r\n      <PricingTable />\r\n    </div>\r\n  )\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC,uJAAA,CAAA,eAAY;;;;;;;;;;AAGnB","debugId":null}}]
-}
