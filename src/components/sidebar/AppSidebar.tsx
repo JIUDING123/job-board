@@ -27,7 +27,7 @@ export function AppSidebar({
         <Sidebar collapsible="icon" className="overflow-hidden">
           <SidebarHeader className="flex-row">
             <SidebarTrigger />
-            <span className="text-xl text-nowrap">JoNav</span>
+            <span className="text-xl text-nowrap">Jiuding</span>
           </SidebarHeader>
           <SidebarContent>{content}</SidebarContent>
           <SignedIn>

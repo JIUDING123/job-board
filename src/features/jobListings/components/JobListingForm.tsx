@@ -183,7 +183,7 @@ export function JobListingForm({
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>State</FormLabel>
+                  <FormLabel>Province</FormLabel>
                   <Select
                     value={field.value ?? ""}
                     onValueChange={val =>
