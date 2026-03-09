@@ -40,8 +40,8 @@ async function SuspendedPage({ params }: Props) {
 }
 
 async function getJobListing(id: string, orgId: string) {
-  "use cache"
-  cacheTag(getJobListingIdTag(id))
+  // "use cache"
+  // cacheTag(getJobListingIdTag(id))
 
   return db.query.JobListingTable.findFirst({
     where: and(

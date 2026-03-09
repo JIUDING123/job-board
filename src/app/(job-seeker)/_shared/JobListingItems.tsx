@@ -28,6 +28,7 @@ import { optional, z } from "zod"
 import { cacheTag } from "next/dist/server/use-cache/cache-tag"
 import { getJobListingGlobalTag } from "@/features/jobListings/db/cache/jobListings"
 import { getOrganizationIdTag } from "@/features/organizations/db/cache/organizations"
+import { NoJobListingsFound, NewBadge, JobListingLink } from "./JobListingClientComponents"
 
 type Props = {
   searchParams: Promise<Record<string, string | string[]>>
@@ -64,25 +65,20 @@ async function SuspendedComponent({ searchParams, params }: Props) {
   const jobListings = await getJobListings(search, jobListingId)
   if (jobListings.length === 0) {
     return (
-      <div className="text-muted-foreground p-4">No job listings found</div>
+      <NoJobListingsFound />
     )
   }
 
   return (
     <div className="space-y-4">
       {jobListings.map(jobListing => (
-        <Link
-          className="block"
+        <JobListingLink
           key={jobListing.id}
-          href={`/job-listings/${jobListing.id}?${convertSearchParamsToString(
-            search
-          )}`}
-        >
-          <JobListingListItem
-            jobListing={jobListing}
-            organization={jobListing.organization}
-          />
-        </Link>
+          jobListingId={jobListing.id}
+          searchParams={search}
+          jobListing={jobListing}
+          organization={jobListing.organization}
+        />
       ))}
     </div>
   )
@@ -168,7 +164,7 @@ async function DaysSincePosting({ postedAt }: { postedAt: Date }) {
   const daysSincePosted = differenceInDays(postedAt, Date.now())
 
   if (daysSincePosted === 0) {
-    return <Badge>New</Badge>
+    return <NewBadge />
   }
 
   return new Intl.RelativeTimeFormat(undefined, {
@@ -181,8 +177,8 @@ async function getJobListings(
   searchParams: z.infer<typeof searchParamsSchema>,
   jobListingId: string | undefined
 ) {
-  "use cache"
-  cacheTag(getJobListingGlobalTag())
+  // "use cache"
+  // cacheTag(getJobListingGlobalTag())
 
   const whereConditions: (SQL | undefined)[] = []
   if (searchParams.title) {
@@ -227,9 +223,9 @@ async function getJobListings(
     where: or(
       jobListingId
         ? and(
-            eq(JobListingTable.status, "published"),
-            eq(JobListingTable.id, jobListingId)
-          )
+          eq(JobListingTable.status, "published"),
+          eq(JobListingTable.id, jobListingId)
+        )
         : undefined,
       and(eq(JobListingTable.status, "published"), ...whereConditions)
     ),
@@ -246,7 +242,7 @@ async function getJobListings(
   })
 
   data.forEach(listing => {
-    cacheTag(getOrganizationIdTag(listing.organization.id))
+    // cacheTag(getOrganizationIdTag(listing.organization.id))
   })
 
   return data

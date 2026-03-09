@@ -11,8 +11,10 @@ import {
 import { SignedIn } from "@/services/clerk/components/SignInStatus"
 import { AppSidebarClient } from "./_AppSidebarClient"
 import { ReactNode } from "react"
+import { LanguageSwitcher } from "@/components/LanguageSwitcher"
+import { getLocaleFromCookies } from "@/lib/get-locale"
 
-export function AppSidebar({
+export async function AppSidebar({
   children,
   content,
   footerButton,
@@ -21,6 +23,8 @@ export function AppSidebar({
   content: ReactNode
   footerButton: ReactNode
 }) {
+  const currentLocale = await getLocaleFromCookies()
+
   return (
     <SidebarProvider className="overflow-y-hidden">
       <AppSidebarClient>
@@ -33,6 +37,11 @@ export function AppSidebar({
           <SignedIn>
             <SidebarFooter>
               <SidebarMenu>
+                <SidebarMenuItem>
+                  <div className="px-2 py-1">
+                    <LanguageSwitcher currentLocale={currentLocale} />
+                  </div>
+                </SidebarMenuItem>
                 <SidebarMenuItem>{footerButton}</SidebarMenuItem>
               </SidebarMenu>
             </SidebarFooter>
@@ -43,3 +52,4 @@ export function AppSidebar({
     </SidebarProvider>
   )
 }
+

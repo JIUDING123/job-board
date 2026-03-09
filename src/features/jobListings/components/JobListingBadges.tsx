@@ -1,14 +1,10 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge"
 import { JobListingTable } from "@/drizzle/schema"
 import { cn } from "@/lib/utils"
 import { ComponentProps } from "react"
-import {
-  formatExperienceLevel,
-  formatJobListingLocation,
-  formatJobType,
-  formatLocationRequirement,
-  formatWage,
-} from "../lib/formatters"
+import { formatWage, formatJobListingLocation } from "../lib/formatters"
 import {
   BanknoteIcon,
   BuildingIcon,
@@ -16,6 +12,8 @@ import {
   HourglassIcon,
   MapPinIcon,
 } from "lucide-react"
+import { useJobListingFormatters } from "../hooks/useJobListingFormatters"
+import { useTranslations } from "@/lib/i18n-context"
 
 export function JobListingBadges({
   jobListing: {
@@ -43,6 +41,10 @@ export function JobListingBadges({
   >
   className?: string
 }) {
+  const t = useTranslations()
+  const { formatLocationRequirement, formatExperienceLevel, formatJobType } =
+    useJobListingFormatters()
+
   const badgeProps = {
     variant: "outline",
     className,
@@ -58,7 +60,7 @@ export function JobListingBadges({
             "border-featured bg-featured/50 text-featured-foreground"
           )}
         >
-          Featured
+          {t("jobListing.featured")}
         </Badge>
       )}
       {wage != null && wageInterval != null && (

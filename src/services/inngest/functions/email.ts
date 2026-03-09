@@ -135,7 +135,7 @@ export const sendDailyUserJobListingEmail = inngest.createFunction(
         react: DailyJobListingEmail({
           jobListings,
           userName: user.name,
-          serverUrl: env.SERVER_URL,
+          serverUrl: env.SERVER_URL || "",
         }),
       })
     })

@@ -246,8 +246,8 @@ async function ApplyButton({ jobListingId }: { jobListingId: string }) {
 }
 
 async function getUserResume(userId: string) {
-  "use cache"
-  cacheTag(getUserResumeIdTag(userId))
+  // "use cache"
+  // cacheTag(getUserResumeIdTag(userId))
 
   return db.query.UserResumeTable.findFirst({
     where: eq(UserResumeTable.userId, userId),
@@ -261,8 +261,8 @@ async function getJobListingApplication({
   jobListingId: string
   userId: string
 }) {
-  "use cache"
-  cacheTag(getJobListingApplicationIdTag({ jobListingId, userId }))
+  // "use cache"
+  // cacheTag(getJobListingApplicationIdTag({ jobListingId, userId }))
 
   return db.query.JobListingApplicationTable.findFirst({
     where: and(
@@ -273,8 +273,8 @@ async function getJobListingApplication({
 }
 
 async function getJobListing(id: string) {
-  "use cache"
-  cacheTag(getJobListingIdTag(id))
+  // "use cache"
+  // cacheTag(getJobListingIdTag(id))
 
   const listing = await db.query.JobListingTable.findFirst({
     where: and(
@@ -293,7 +293,7 @@ async function getJobListing(id: string) {
   })
 
   if (listing != null) {
-    cacheTag(getOrganizationIdTag(listing.organization.id))
+    // cacheTag(getOrganizationIdTag(listing.organization.id))
   }
 
   return listing

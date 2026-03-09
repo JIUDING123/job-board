@@ -28,8 +28,8 @@ async function SuspendedPage() {
 }
 
 async function getMostRecentJobListing(orgId: string) {
-  "use cache"
-  cacheTag(getJobListingOrganizationTag(orgId))
+  // "use cache"
+  // cacheTag(getJobListingOrganizationTag(orgId))
 
   return db.query.JobListingTable.findFirst({
     where: eq(JobListingTable.organizationId, orgId),

@@ -85,8 +85,8 @@ async function AISummaryCard() {
 }
 
 async function getUserResume(userId: string) {
-  "use cache"
-  cacheTag(getUserResumeIdTag(userId))
+  // "use cache"
+  // cacheTag(getUserResumeIdTag(userId))
 
   return db.query.UserResumeTable.findFirst({
     where: eq(UserResumeTable.userId, userId),

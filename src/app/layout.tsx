@@ -1,10 +1,13 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
+import { getDictionary } from "@/lib/i18n"
 import "@mdxeditor/editor/style.css"
 import { ClerkProvider } from "@/services/clerk/components/ClerkProvider"
 import { Toaster } from "@/components/ui/sonner"
 import { UploadThingSSR } from "@/services/uploadthing/components/UploadThingSSR"
+import { I18nProvider } from "@/lib/i18n-context"
+import { getLocaleFromCookies } from "@/lib/get-locale"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,22 +27,31 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // Get locale from cookie/headers instead of URL
+  const lang = await getLocaleFromCookies()
+
+
+  const dict = await getDictionary(lang)
+
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang={lang} suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
         >
-          {children}
-          <Toaster />
-          <UploadThingSSR />
+          <I18nProvider dictionary={dict}>
+            {children}
+            <Toaster />
+            <UploadThingSSR />
+          </I18nProvider>
         </body>
       </html>
     </ClerkProvider>
   )
 }
+

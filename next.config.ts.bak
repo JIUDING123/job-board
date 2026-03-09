@@ -3,11 +3,8 @@ import type { NextConfig } from "next"
 const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
-    // dynamicIO: true,
+    dynamicIO: true,
   },
-
-
-
   // Add HTTP proxy configuration
   async rewrites() {
     return [
@@ -20,4 +17,3 @@ const nextConfig: NextConfig = {
 }
 
 export default nextConfig
-

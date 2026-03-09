@@ -29,12 +29,6 @@ import {
   locationRequirements,
   wageIntervals,
 } from "@/drizzle/schema"
-import {
-  formatExperienceLevel,
-  formatJobType,
-  formatLocationRequirement,
-  formatWageInterval,
-} from "../lib/formatters"
 import { StateSelectItems } from "./StateSelectItems"
 import { MarkdownEditor } from "@/components/markdown/MarkdownEditor"
 import { Button } from "@/components/ui/button"
@@ -42,6 +36,8 @@ import { LoadingSwap } from "@/components/LoadingSwap"
 import { Loader2Icon } from "lucide-react"
 import { createJobListing, updateJobListing } from "../actions/actions"
 import { toast } from "sonner"
+import { useTranslations } from "@/lib/i18n-context"
+import { useJobListingFormatters } from "../hooks/useJobListingFormatters"
 
 const NONE_SELECT_VALUE = "none"
 
@@ -62,6 +58,10 @@ export function JobListingForm({
     | "locationRequirement"
   > | null
 }) {
+  const t = useTranslations()
+  const { formatLocationRequirement, formatExperienceLevel, formatJobType, formatWageInterval } =
+    useJobListingFormatters()
+
   const form = useForm({
     resolver: zodResolver(jobListingSchema),
     defaultValues: jobListing ?? {
@@ -101,9 +101,9 @@ export function JobListingForm({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Job Title</FormLabel>
+                <FormLabel>{t("jobListingForm.title_label")}</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} placeholder={t("jobListingForm.title_placeholder")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -114,7 +114,7 @@ export function JobListingForm({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Wage</FormLabel>
+                <FormLabel>{t("jobListingForm.wage_label")}</FormLabel>
                 <div className="flex">
                   <FormControl>
                     <Input
@@ -122,6 +122,7 @@ export function JobListingForm({
                       type="number"
                       value={field.value ?? ""}
                       className="rounded-r-none"
+                      placeholder={t("jobListingForm.wage_placeholder")}
                       onChange={e =>
                         field.onChange(
                           isNaN(e.target.valueAsNumber)
@@ -157,7 +158,7 @@ export function JobListingForm({
                     )}
                   />
                 </div>
-                <FormDescription>Optional</FormDescription>
+                <FormDescription>{t("common.optional") || "Optional"}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -170,9 +171,13 @@ export function JobListingForm({
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>City</FormLabel>
+                  <FormLabel>{t("jobListingForm.city_label")}</FormLabel>
                   <FormControl>
-                    <Input {...field} value={field.value ?? ""} />
+                    <Input
+                      {...field}
+                      value={field.value ?? ""}
+                      placeholder={t("jobListingForm.city_placeholder")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -183,7 +188,7 @@ export function JobListingForm({
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Province</FormLabel>
+                  <FormLabel>{t("jobListingForm.state_label")}</FormLabel>
                   <Select
                     value={field.value ?? ""}
                     onValueChange={val =>
@@ -192,7 +197,7 @@ export function JobListingForm({
                   >
                     <FormControl>
                       <SelectTrigger className="w-full">
-                        <SelectValue />
+                        <SelectValue placeholder={t("jobListingForm.state_placeholder")} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -201,7 +206,7 @@ export function JobListingForm({
                           value={NONE_SELECT_VALUE}
                           className="text-muted-foreground"
                         >
-                          Clear
+                          {t("common.clear")}
                         </SelectItem>
                       )}
                       <StateSelectItems />
@@ -218,7 +223,7 @@ export function JobListingForm({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Location Requirement</FormLabel>
+                <FormLabel>{t("jobListingForm.location_requirement_label")}</FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger className="w-full">
@@ -243,7 +248,7 @@ export function JobListingForm({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Job Type</FormLabel>
+                <FormLabel>{t("jobListingForm.type_label")}</FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger className="w-full">
@@ -267,7 +272,7 @@ export function JobListingForm({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Experience Level</FormLabel>
+                <FormLabel>{t("jobListingForm.experience_label")}</FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger className="w-full">
@@ -292,7 +297,7 @@ export function JobListingForm({
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>{t("jobListingForm.description_label")}</FormLabel>
               <FormControl>
                 <MarkdownEditor {...field} markdown={field.value} />
               </FormControl>
@@ -306,7 +311,7 @@ export function JobListingForm({
           className="w-full"
         >
           <LoadingSwap isLoading={form.formState.isSubmitting}>
-            {jobListing ? "Update Job Listing" : "Create Job Listing"}
+            {jobListing ? t("jobListingForm.update") : t("jobListingForm.create_job")}
           </LoadingSwap>
         </Button>
       </form>

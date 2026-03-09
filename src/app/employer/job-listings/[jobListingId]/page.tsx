@@ -59,11 +59,12 @@ type Props = {
 
 export default function JobListingPage(props: Props) {
   return (
-    <Suspense>
+    <Suspense fallback={<div className="p-4">Loading...</div>}>
       <SuspendedPage {...props} />
     </Suspense>
   )
 }
+
 
 async function SuspendedPage({ params }: Props) {
   const { orgId } = await getCurrentOrganization()
@@ -300,11 +301,11 @@ async function Applications({ jobListingId }: { jobListingId: string }) {
           ...a.user,
           resume: a.user.resume
             ? {
-                ...a.user.resume,
-                markdownSummary: a.user.resume.aiSummary ? (
-                  <MarkdownRenderer source={a.user.resume.aiSummary} />
-                ) : null,
-              }
+              ...a.user.resume,
+              markdownSummary: a.user.resume.aiSummary ? (
+                <MarkdownRenderer source={a.user.resume.aiSummary} />
+              ) : null,
+            }
             : null,
         },
         coverLetterMarkdown: a.coverLetter ? (
@@ -322,8 +323,8 @@ async function Applications({ jobListingId }: { jobListingId: string }) {
 }
 
 async function getJobListingApplications(jobListingId: string) {
-  "use cache"
-  cacheTag(getJobListingApplicationJobListingTag(jobListingId))
+  // "use cache"
+  // cacheTag(getJobListingApplicationJobListingTag(jobListingId))
 
   const data = await db.query.JobListingApplicationTable.findMany({
     where: eq(JobListingApplicationTable.jobListingId, jobListingId),
@@ -354,16 +355,16 @@ async function getJobListingApplications(jobListingId: string) {
   })
 
   data.forEach(({ user }) => {
-    cacheTag(getUserIdTag(user.id))
-    cacheTag(getUserResumeIdTag(user.id))
+    // cacheTag(getUserIdTag(user.id))
+    // cacheTag(getUserResumeIdTag(user.id))
   })
 
   return data
 }
 
 async function getJobListing(id: string, orgId: string) {
-  "use cache"
-  cacheTag(getJobListingIdTag(id))
+  // "use cache"
+  // cacheTag(getJobListingIdTag(id))
 
   return db.query.JobListingTable.findFirst({
     where: and(

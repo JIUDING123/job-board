@@ -250,49 +250,49 @@ export async function deleteJobListing(id: string) {
   }
 } */
 
-  export async function getAiJobListingSearchResults(
-    unsafe: z.infer<typeof jobListingAiSearchSchema>
-  ): Promise<
-    { error: true; message: string } | { error: false; jobIds: string[] }
-  > {
-    const { success, data } = jobListingAiSearchSchema.safeParse(unsafe)
-    if (!success) {
-      return {
-        error: true,
-        message: "There was an error processing your search query",
-      }
+export async function getAiJobListingSearchResults(
+  unsafe: z.infer<typeof jobListingAiSearchSchema>
+): Promise<
+  { error: true; message: string } | { error: false; jobIds: string[] }
+> {
+  const { success, data } = jobListingAiSearchSchema.safeParse(unsafe)
+  if (!success) {
+    return {
+      error: true,
+      message: "There was an error processing your search query",
     }
-  
-    const { userId } = await getCurrentUser()
-    if (userId == null) {
-      return {
-        error: true,
-        message: "You need an account to use AI job search",
-      }
-    }
-  
-    const allListings = await getPublicJobListings()
-    const matchedListings = await getMatchingJobListings(
-      data.query,
-      allListings,
-      {
-        maxNumberOfJobs: 10,
-      }
-    )
-    console.log("matchedListings", matchedListings)
-    if (matchedListings.length === 0) {
-      return {
-        error: true,
-        message: "No jobs match your search criteria",
-      }
-    }
-  
-    return { error: false, jobIds: matchedListings }
   }
-  
+
+  const { userId } = await getCurrentUser()
+  if (userId == null) {
+    return {
+      error: true,
+      message: "You need an account to use AI job search",
+    }
+  }
+
+  const allListings = await getPublicJobListings()
+  const matchedListings = await getMatchingJobListings(
+    data.query,
+    allListings,
+    {
+      maxNumberOfJobs: 10,
+    }
+  )
+  console.log("matchedListings", matchedListings)
+  if (matchedListings.length === 0) {
+    return {
+      error: true,
+      message: "No jobs match your search criteria",
+    }
+  }
+
+  return { error: false, jobIds: matchedListings }
+}
+
 async function getJobListing(id: string, orgId: string) {
-  "use cache"
-  cacheTag(getJobListingIdTag(id))
+  // "use cache"
+  // cacheTag(getJobListingIdTag(id))
 
   return db.query.JobListingTable.findFirst({
     where: and(
@@ -303,8 +303,8 @@ async function getJobListing(id: string, orgId: string) {
 }
 
 async function getPublicJobListings() {
-  "use cache"
-  cacheTag(getJobListingGlobalTag())
+  // "use cache"
+  // cacheTag(getJobListingGlobalTag())
 
   return db.query.JobListingTable.findMany({
     where: eq(JobListingTable.status, "published"),

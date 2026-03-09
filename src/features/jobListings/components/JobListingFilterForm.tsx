@@ -28,15 +28,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import {
-  formatExperienceLevel,
-  formatJobType,
-  formatLocationRequirement,
-} from "../lib/formatters"
 import { StateSelectItems } from "./StateSelectItems"
 import { Button } from "@/components/ui/button"
 import { LoadingSwap } from "@/components/LoadingSwap"
 import { useSidebar } from "@/components/ui/sidebar"
+import { useTranslations } from "@/lib/i18n-context"
+import { useJobListingFormatters } from "../hooks/useJobListingFormatters"
 
 const ANY_VALUE = "any"
 
@@ -57,6 +54,9 @@ export function JobListingFilterForm() {
   const router = useRouter()
   const pathname = usePathname()
   const { setOpenMobile } = useSidebar()
+  const t = useTranslations()
+  const { formatLocationRequirement, formatExperienceLevel, formatJobType } =
+    useJobListingFormatters()
 
   const form = useForm({
     resolver: zodResolver(jobListingFilterSchema),
@@ -103,9 +103,9 @@ export function JobListingFilterForm() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Job Title</FormLabel>
+              <FormLabel>{t("jobListingFilter.search_title")}</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder={t("jobListingFilter.search_placeholder")} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -116,7 +116,7 @@ export function JobListingFilterForm() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Location Requirement</FormLabel>
+              <FormLabel>{t("jobListingForm.location_requirement_label")}</FormLabel>
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="w-full">
@@ -124,7 +124,7 @@ export function JobListingFilterForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value={ANY_VALUE}>Any</SelectItem>
+                  <SelectItem value={ANY_VALUE}>{t("jobListingFilter.any_location")}</SelectItem>
                   {locationRequirements.map(lr => (
                     <SelectItem key={lr} value={lr}>
                       {formatLocationRequirement(lr)}
@@ -141,9 +141,9 @@ export function JobListingFilterForm() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>City</FormLabel>
+              <FormLabel>{t("jobListingForm.city_label")}</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder={t("jobListingFilter.city_placeholder")} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -154,7 +154,7 @@ export function JobListingFilterForm() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Province</FormLabel>
+              <FormLabel>{t("jobListingForm.state_label")}</FormLabel>
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="w-full">
@@ -162,7 +162,7 @@ export function JobListingFilterForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value={ANY_VALUE}>Any</SelectItem>
+                  <SelectItem value={ANY_VALUE}>{t("common.all")}</SelectItem>
                   <StateSelectItems />
                 </SelectContent>
               </Select>
@@ -175,7 +175,7 @@ export function JobListingFilterForm() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Job Type</FormLabel>
+              <FormLabel>{t("jobListingForm.type_label")}</FormLabel>
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="w-full">
@@ -183,7 +183,7 @@ export function JobListingFilterForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value={ANY_VALUE}>Any</SelectItem>
+                  <SelectItem value={ANY_VALUE}>{t("jobListingFilter.any_type")}</SelectItem>
                   {jobListingTypes.map(type => (
                     <SelectItem key={type} value={type}>
                       {formatJobType(type)}
@@ -200,7 +200,7 @@ export function JobListingFilterForm() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Experience Level</FormLabel>
+              <FormLabel>{t("jobListingForm.experience_label")}</FormLabel>
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="w-full">
@@ -208,7 +208,7 @@ export function JobListingFilterForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value={ANY_VALUE}>Any</SelectItem>
+                  <SelectItem value={ANY_VALUE}>{t("jobListingFilter.any_experience")}</SelectItem>
                   {experienceLevels.map(experience => (
                     <SelectItem key={experience} value={experience}>
                       {formatExperienceLevel(experience)}
@@ -226,7 +226,7 @@ export function JobListingFilterForm() {
           className="w-full"
         >
           <LoadingSwap isLoading={form.formState.isSubmitting}>
-            Filter
+            {t("common.filter")}
           </LoadingSwap>
         </Button>
       </form>

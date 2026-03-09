@@ -29,6 +29,8 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 import { ReactNode, Suspense } from "react"
 import { JobListingMenuGroup } from "./_JobListingMenugroup"
+import { EmployerSidebarContent } from "./_EmployerSidebarContent"
+import { EmptyJobListingMenu } from "./_EmptyJobListingMenu"
 
 export default function EmployerLayout({ children }: { children: ReactNode }) {
   return (
@@ -45,31 +47,14 @@ async function LayoutSuspense({ children }: { children: ReactNode }) {
   return (
     <AppSidebar
       content={
-        <>
-          <SidebarGroup>
-            <SidebarGroupLabel>Job Listings</SidebarGroupLabel>
-            <AsyncIf
-              condition={() => hasOrgUserPermission("org:job_listings:create")}
-            >
-              <SidebarGroupAction title="Add Job Listing" asChild>
-                <Link href="/employer/job-listings/new">
-                  <PlusIcon /> <span className="sr-only">Add Job Listing</span>
-                </Link>
-              </SidebarGroupAction>
-            </AsyncIf>
-            <SidebarGroupContent className="group-data-[state=collapsed]:hidden">
-              <Suspense>
-                <JobListingMenu orgId={orgId} />
-              </Suspense>
-            </SidebarGroupContent>
-          </SidebarGroup>
-          <SidebarNavMenuGroup
-            className="mt-auto"
-            items={[
-              { href: "/", icon: <ClipboardListIcon />, label: "Job Board" },
-            ]}
-          />
-        </>
+        <EmployerSidebarContent
+          orgId={orgId}
+          jobListingMenu={
+            <Suspense>
+              <JobListingMenu orgId={orgId} />
+            </Suspense>
+          }
+        />
       }
       footerButton={<SidebarOrganizationButton />}
     >
@@ -85,18 +70,7 @@ async function JobListingMenu({ orgId }: { orgId: string }) {
     jobListings.length === 0 &&
     (await hasOrgUserPermission("org:job_listings:create"))
   ) {
-    return (
-      <SidebarMenu>
-        <SidebarMenuItem>
-          <SidebarMenuButton asChild>
-            <Link href="/employer/job-listings/new">
-              <PlusIcon />
-              <span>Create your first job listing</span>
-            </Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
-    )
+    return <EmptyJobListingMenu />
   }
 
   return Object.entries(Object.groupBy(jobListings, j => j.status))
@@ -116,8 +90,8 @@ async function JobListingMenu({ orgId }: { orgId: string }) {
 }
 
 async function getJobListings(orgId: string) {
-  "use cache"
-  cacheTag(getJobListingOrganizationTag(orgId))
+  // "use cache"
+  // cacheTag(getJobListingOrganizationTag(orgId))
 
   const data = await db
     .select({
@@ -136,7 +110,7 @@ async function getJobListings(orgId: string) {
     .orderBy(desc(JobListingTable.createdAt))
 
   data.forEach(jobListing => {
-    cacheTag(getJobListingApplicationJobListingTag(jobListing.id))
+    // cacheTag(getJobListingApplicationJobListingTag(jobListing.id))
   })
 
   return data

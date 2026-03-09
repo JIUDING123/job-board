@@ -62,8 +62,8 @@ async function getNotificationSettings({
   userId: string
   organizationId: string
 }) {
-  "use cache"
-  cacheTag(getOrganizationUserSettingsIdTag({ userId, organizationId }))
+  // "use cache"
+  // cacheTag(getOrganizationUserSettingsIdTag({ userId, organizationId }))
 
   return db.query.OrganizationUserSettingsTable.findFirst({
     where: and(

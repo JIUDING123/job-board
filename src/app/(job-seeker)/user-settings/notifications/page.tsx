@@ -43,8 +43,8 @@ async function SuspendedForm({ userId }: { userId: string }) {
 }
 
 async function getNotificationSettings(userId: string) {
-  "use cache"
-  cacheTag(getUserNotificationSettingsIdTag(userId))
+  // "use cache"
+  // cacheTag(getUserNotificationSettingsIdTag(userId))
 
   return db.query.UserNotificationSettingsTable.findFirst({
     where: eq(UserNotificationSettingsTable.userId, userId),
